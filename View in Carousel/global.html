@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>global HTML page</title>
+		<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+		<script>
+
+function respondToMessage(theMessageEvent) {
+	alert('in');
+	if (theMessageEvent.request === "startInstagramFetch") {
+		var instagramURL = theMessageEvent.documentURL;
+		getMediaAndUserDataFromInstagram(instagramURL);
+	}
+}
+
+function getMediaAndUserDataFromInstagram(theURL) {
+	var apiURL = 'http://api.instagram.com/oembed?url=' + theURL + '&callback=?';
+	$.getJSON(apiURL,
+		function (data) {
+			// Send media id to injected script
+			safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("theInstagramData", data);
+		});
+}
+
+//safari.application.addEventListener("message", respondToMessage, false);
+
+chrome.extension.onRequest.addListener(
+  function(request) {
+	respondToMessage(request);
+  });
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

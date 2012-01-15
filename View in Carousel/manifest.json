@@ -1,0 +1,13 @@
+{
+  "name": "View in Carousel",
+  "version": "1.0",
+  "description": "View photos and users on Instagram webpages in Carousel.",
+  "background_page": "global.html",
+  "content_scripts": [
+    { "matches": ["http://instagr.am/*"], "js": ["end.js"] }
+  ],
+  "permissions": [
+	"tabs",
+    "http://instagr.am/"
+  ]
+}
