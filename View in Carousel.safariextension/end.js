@@ -33,10 +33,3 @@ if (window.top === window) {
 	// Tell global.html to start fetching Instagram data
 	safari.self.tab.dispatchMessage("startInstagramFetch", document.URL);
 }
-
-function wrapPhotoWithCarouselURL(mediaID) {
-	if (window.top === window) {
-		var currentPhotoHTML = $('body').html();
-		alert(currentPhotoHTML);
-	}
-}

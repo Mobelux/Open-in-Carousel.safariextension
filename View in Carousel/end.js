@@ -3,9 +3,9 @@ $.fn.outerHTML = function() {
 };
 
 function getMediaID(theMessageEvent) {
-	if (theMessageEvent.name === "theInstagramData") {
-		var mediaID = theMessageEvent.message.media_id;
-		var authorID = theMessageEvent.message.author_id
+	if (theMessageEvent.request === "theInstagramData") {
+		var mediaID = theMessageEvent.data.media_id;
+		var authorID = theMessageEvent.data.author_id
 		
 		// Link the photo with the URL scheme
 		var currentPhotoHTML = $('img.photo:first').outerHTML();
@@ -18,7 +18,6 @@ function getMediaID(theMessageEvent) {
 		var currentAuthorNameHTML = usernameElement.outerHTML();
 		var newAuthorNameHTML = '<a href=\"x-mobelux-carousel://openuser?userID=' + authorID + '\" title=\"View ' + usernameText + ' in Carousel\">' + currentAuthorNameHTML + '</a>';
 		usernameElement.replaceWith(newAuthorNameHTML);
-		//alert(currentAuthorNameHTML);
 		
 		// Link the author avatar with the URL scheme
 		var currentAuthorHTML = $('img.profile-picture:first').outerHTML();
@@ -27,18 +26,12 @@ function getMediaID(theMessageEvent) {
    }
 }
 
-safari.self.addEventListener("message", getMediaID, false);
+chrome.extension.onRequest.addListener(
+	function(request) {
+		getMediaID(request);
+	});
 
 if (window.top === window) {
 	// Tell global.html to start fetching Instagram data
-	//safari.self.tab.dispatchMessage("startInstagramFetch", document.URL);
-	alert('in');
 	chrome.extension.sendRequest({request: "startInstagramFetch", documentURL: document.URL});
-}
-
-function wrapPhotoWithCarouselURL(mediaID) {
-	if (window.top === window) {
-		var currentPhotoHTML = $('body').html();
-		alert(currentPhotoHTML);
-	}
 }

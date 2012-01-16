@@ -6,7 +6,6 @@
 		<script>
 
 function respondToMessage(theMessageEvent) {
-	alert('in');
 	if (theMessageEvent.request === "startInstagramFetch") {
 		var instagramURL = theMessageEvent.documentURL;
 		getMediaAndUserDataFromInstagram(instagramURL);
@@ -18,16 +17,16 @@ function getMediaAndUserDataFromInstagram(theURL) {
 	$.getJSON(apiURL,
 		function (data) {
 			// Send media id to injected script
-			safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("theInstagramData", data);
+			chrome.tabs.getSelected(null, function(tab) {
+				chrome.tabs.sendRequest(tab.id, {request: "theInstagramData", data: data});
+			});
 		});
 }
 
-//safari.application.addEventListener("message", respondToMessage, false);
-
 chrome.extension.onRequest.addListener(
-  function(request) {
-	respondToMessage(request);
-  });
+	function(request) {
+		respondToMessage(request);
+	});
 
 		</script>
 	</head>
