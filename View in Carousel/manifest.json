@@ -2,6 +2,14 @@
 	"name": "View in Carousel",
 	"version": "1.0",
 	"description": "View photos and users on Instagram webpages in Carousel.",
+	"homepage_url": "http://carousel.mobelux.com/extension",
+	"update_url": "http://carousel.mobelux.com/extension/update.xml",
+	"icons": 
+		{ 
+			"16": "Icon-16.png",
+			"48": "Icon-48.png",
+			"128": "Icon-128.png"
+		},
 	"permissions": [
 		"tabs"
 	],
