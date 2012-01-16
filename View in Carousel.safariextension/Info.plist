@@ -34,6 +34,10 @@
 				<string>jquery-1.7.1.min.js</string>
 			</array>
 		</dict>
+		<key>Stylesheets</key>
+		<array>
+			<string>style.css</string>
+		</array>
 	</dict>
 	<key>Description</key>
 	<string>View photos and users on Instagram webpages in Carousel.</string>

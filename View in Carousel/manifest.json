@@ -17,6 +17,7 @@
 	"content_scripts": [
 		{
 			"matches": ["http://instagr.am/*"], 
+			"css": ["style.css"],
 			"js": ["jquery-1.7.1.min.js", "end.js"] 
 		}
 	]
