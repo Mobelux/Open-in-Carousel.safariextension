@@ -1,6 +1,6 @@
 {
 	"name": "View in Carousel",
-	"version": "1.0",
+	"version": "1.1",
 	"description": "View photos and users on Instagram webpages in Carousel.",
 	"homepage_url": "http://carousel.mobelux.com/extension",
 	"update_url": "http://carousel.mobelux.com/extension/update.xml",
@@ -16,7 +16,7 @@
 	"background_page": "global.html",
 	"content_scripts": [
 		{
-			"matches": ["http://instagr.am/*"], 
+			"matches": ["http://instagr.am/*", "http://instagram.com/*"], 
 			"css": ["style.css"],
 			"js": ["jquery-1.7.1.min.js", "end.js"] 
 		}

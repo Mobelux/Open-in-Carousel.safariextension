@@ -5,7 +5,8 @@ $.fn.outerHTML = function() {
 function getMediaID(theMessageEvent) {
 	if (theMessageEvent.name === "theInstagramData") {
 		var mediaID = theMessageEvent.message.media_id;
-		var authorID = theMessageEvent.message.author_id
+		var authorID = theMessageEvent.message.author_id;
+		var authorName = theMessageEvent.message.author_name;
 		
 		// Link the photo with the URL scheme
 		var currentPhotoHTML = $('img.photo:first').outerHTML();
@@ -14,7 +15,7 @@ function getMediaID(theMessageEvent) {
 		
 		// Link the author avatar with the URL scheme
 		var currentUserNameImageHTML = $('.user-avatar:first').outerHTML();
-		var newUserNameImageHTML = '<a href=\"x-mobelux-carousel://openuser?userID=' + authorID + '\" title=\"View in Carousel\">' + currentUserNameImageHTML + '</a>';
+		var newUserNameImageHTML = '<a href=\"x-mobelux-carousel://openuser?userID=' + authorID + '\" title=\"View ' + authorName + ' in Carousel\">' + currentUserNameImageHTML + '</a>';
 		$('.user-avatar').replaceWith(newUserNameImageHTML);
    }
 }
